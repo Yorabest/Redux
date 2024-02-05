@@ -4,7 +4,7 @@ import css from "./TaskList.module.css";
 import { statusFilters } from "../../redux/constants";
 import { getTasks, getFiltersStatus} from "../../redux/selectors";
 import { useEffect } from "react";
-import { fetchTasks } from "redux/operation";
+import { fetchTasks } from "../../redux/operation";
 
 export const TaskList = () => {
   const dispatch = useDispatch()

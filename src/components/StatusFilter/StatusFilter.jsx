@@ -4,9 +4,10 @@ import { statusFilters } from "../../redux/constants";
 import { useSelector, useDispatch } from "react-redux";
 // import { changeFilter } from '../../redux/actions'
 import { changeFilter } from "../../redux/slises";
+import { getFiltersStatus } from "../../redux/selectors";
 
 export const StatusFilter = () => {
-  const filter = useSelector(state => state.filters.status)
+  const filter = useSelector(getFiltersStatus)
   const dispatch = useDispatch()
 
 

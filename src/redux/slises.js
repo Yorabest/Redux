@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { statusFilters } from './constants';
-import { addTask, fetchTasks } from './operation';
+import { addTask, deleteTask, fetchTasks, toggleCompleted } from './operation';
 
 const tasksSlise = createSlice({
   name: 'tasks',
@@ -32,27 +32,29 @@ const tasksSlise = createSlice({
   // }
   extraReducers(builder) {
     builder
-      .addCase(fetchTasks.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(fetchTasks.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
         state.items = action.payload;
       })
-      .addCase(fetchTasks.rejected, (state, action) => {
-      state.error = action.payload
-      })
-      .addCase(addTask.pending, (state, action) => {
-       state.isLoading = true;
-      })
-     .addCase(addTask.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
+      .addCase(addTask.fulfilled, (state, action) => {
         state.items.push(action.payload);
       })
-      .addCase(addTask.rejected, (state, action) => {
-      state.error = action.payload
+      .addCase(deleteTask.fulfilled, (state, action) => {
+        const idx = state.items.findIndex((task) => task.id === action.payload);
+        state.items.splice(idx, 1)
+      })
+      .addCase(toggleCompleted.fulfilled, (state, action) => {
+        const idx = state.items.findIndex((task) => task.id === action.payload.id);
+        state.items.splice(idx, 1, action.payload)
+      })
+      .addMatcher(isAnyOf(fetchTasks.pending, addTask.pending, deleteTask.pending, toggleCompleted.pending), (state) => {
+        state.isLoading = true;
+      })
+    .addMatcher(isAnyOf(fetchTasks.rejected ,addTask.rejected ,deleteTask.rejected ,toggleCompleted.rejected),(state, action) => {
+        state.error = action.payload
+    })
+    .addMatcher(isAnyOf(fetchTasks.fulfilled, addTask.fulfilled, deleteTask.fulfilled ,toggleCompleted.fulfilled),(state) => {
+        state.isLoading = false;
+        state.error = null;
       })
   }
 })
