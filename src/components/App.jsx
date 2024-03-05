@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { AppBar } from "./AppBar/AppBar";
-import { Layout } from "./Layout/Layout";
+import { Layout } from "./Tasks/Layout/Layout";
 // import { TaskForm } from "./TaskForm/TaskForm";
 // import { TaskList } from "./TaskList/TaskList";
 

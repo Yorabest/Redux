@@ -1,32 +1,29 @@
-// /
-// /tasks 
-import { createBrowserRouter } from "react-router-dom";
-// import { Layout } from "components/Layout/Layout";
-// import { TaskList } from "components/TaskList/TaskList";
-import { HomePage, LogIn, SignIn, Tasks } from "pages";
 import { App } from "components/App";
+import { RestrictedRout } from "./components/RestrictrdRout";
+import { Home, Login, Register, Tasks } from 'pages';
+import { createBrowserRouter } from "react-router-dom"
 
-export const router = createBrowserRouter([
+export const tasksRouter = createBrowserRouter([
     {
         path: '/',
-        element: <App/>,
+        element: <App />,
         children: [
-            {
-                index: true,
-                element: <HomePage/>
-        },
-            {
-                path: '/tasks',
-                element: <Tasks/>
-            },
-            {
-                path: '/login',
-                element: <LogIn/>
-            },
-            {
-                path: '/signin',
-                element: <SignIn/>
-            },
-        ]
-    }]
-)
+    {
+        index: true,
+        element: <Home/>
+    },
+    {
+        path: '/tasks',
+        element: <Tasks/>
+    },
+    {
+        path: '/login',
+        element: <RestrictedRout element={Login} redirectTo="/tasks"/>
+    },
+    {
+        path: '/register',
+        element: <Register/>
+    }
+    ]
+    }
+])

@@ -1,4 +1,4 @@
-export {HomePage} from './Home' 
-export {LogIn} from './LogIn' 
-export {SignIn} from './SignIn' 
-export {Tasks} from './Tasks' 
+export { Home } from './Home';
+export { Login } from './Login';
+export { Register } from './Register';
+export { Tasks } from './Tasks';

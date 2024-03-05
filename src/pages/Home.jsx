@@ -1,4 +1,5 @@
-export const HomePage = ()=> {
-    return <>
-    <p>Home, sweet home</p></>
-}
+export const Home = () => {
+    return (
+    <h1>Home</h1>
+    )
+    }

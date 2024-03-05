@@ -1,22 +1,17 @@
-import { UsersMenu } from "components/User`sMenu/User`sMenu";
-// import { StatusFilter } from "../StatusFilter/StatusFilter";
-// import { TaskCounter } from "../TaskCounter/TaskCounter";
-import css from "./AppBar.module.css";
-import {Navigation} from '../AppNav'
+import { Navigation } from '../Navigation/Navigation';
+import { UserMenu } from '../UserMenu/UserMenu';
+import { AuthNav } from '../AuthNav/AuthNav';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
+
 
 export const AppBar = () => {
+const logedIn = useSelector(selectIsLoggedIn)
   return (
-    <header className={css.wrapper}>
-      <Navigation/>
-    <UsersMenu/>
-      {/* // <section className={css.section}>
-      //   <h2 className={css.title}>Tasks</h2>
-      //   <TaskCounter />
-      // </section>
-      // <section className={css.section}>
-      //   <h2 className={css.title}>Filter by status</h2>
-      //   <StatusFilter />
-      // </section> */}
+    <header>
+    {logedIn ? <><Navigation /> <UserMenu /></> :  <AuthNav />}
+      
+         
     </header>
   );
 };

@@ -1,6 +1,10 @@
-import { LogInForm } from "components/LogInForm/LogInForm"
+import { LoginForm } from "../components/LoginForm/LoginForm"
 
-export const LogIn = () => {
-    return <>
-    <LogInForm/></>
+export const Login = () => {
+return (
+    <>
+    <h1>Login</h1>
+    <LoginForm/>
+    </>
+)
 }
